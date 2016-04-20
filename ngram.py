@@ -2,6 +2,8 @@
 #ms4985
 
 import sys
+from operator import itemgetter
+import binascii
 
 #handle user input
 if len(sys.argv) != 5:
@@ -27,6 +29,7 @@ if slide > n:
 	sys.exit()
 
 dict = {}
+distinct = {}
 
 #create dictionary with ngram frequencies
 try:
@@ -47,10 +50,23 @@ try:
 				i += 1
 			next = f.read(slide)
 			ngram = old + next
+			if len(ngram) < n:
+				break
 except:
 	print 'ERROR: input file doesnt exist'
 	sys.exit()
 
-for ngram in dict:
-	print ngram, dict[ngram]
+for ngram, freq in dict.items():
+	if freq == 1:
+		del dict[ngram]
+		distinct[ngram] = 1
+
+i=0
+with open(outfile, 'wb') as f:
+	for ngram, freq in sorted(dict.items(), key=itemgetter(1), reverse=True):
+			if i < 20:
+				f.write(binascii.hexlify(ngram) + ' ' + str(freq) + '\n')
+			i += 1
+
+		
 
