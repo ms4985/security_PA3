@@ -1,0 +1,14 @@
+[root@4180-network-security 4180student]# scapy
+INFO: Can't import python gnuplot wrapper . Won't be able to plot.
+INFO: Can't import PyX. Won't be able to use psdump() or pdfdump().
+WARNING: No route found for IPv6 destination :: (no default route?)
+INFO: Can't import python Crypto lib. Won't be able to decrypt WEP.
+INFO: Can't import python Crypto lib. Disabled certificate manipulation tools
+Welcome to Scapy (2.3.1)
+>>> ping = IP(dst="160.39.151.164")/ICMP()
+>>> ans = sr1(ping)
+Begin emission:
+..*Finished to send 1 packets.
+
+Received 3 packets, got 1 answers, remaining 0 packets
+

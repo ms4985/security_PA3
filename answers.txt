@@ -8,6 +8,54 @@ Programming Assignment 3
 Problem 1
 
 a.
+prog1
+C 
+By inspecting the strings output and noticing these strings:
+GCC: (GNU) 4.8.3 20140911 (Red Hat 4.8.3-7)
+GCC_3.0
+indicating the gcc compiler is used
+
+prog2
+C 
+By inspecting the strings output and noticing these strings:
+GCC: (GNU) 4.8.3 20140911 (Red Hat 4.8.3-7)
+GCC_3.0
+indicating the gcc compiler is used
+
+prog3
+C++ 
+By inspecting the strings output and noticing this string:
+GLIBCXX_3.4
+indicating the g++ compiler is used
+
+prog4
+Objective C
+By inspecting the strings output and noticing these strings:
+GCC: (GNU) 4.8.3 20140911
+GCC_3.@GLIB
+which suggests a C compiler but the executable shares very little with progs1-3 which suggests it is not written in C/C++ but still uses gnu
+
+prog5
+Java
+By inspecting the strings output and noticing these strings:
+java/io/PrintStream
+java/lang/Integer
+java/lang/Math
+java/lang/Object
+java/lang/StringBuilder
+java/lang/System
+java/util/ArrayList
+java/util/Collections
+java/util/List
+indicating presence of java lang packages
+
+prog6
+python
+By inspecting the strings output and noticing these strings:
+/usr/lib/python2.7/site-packages/scapy/layers/ntp.pyR
+/usr/lib/python2.7/site-packages/scapy/layers/ntp.pyR
+/usr/lib/python2.7/site-packages/scapy/layers/ntp.pyR
+indicating presence of python packages
 
 b.
 prog1 matches list.txt:prog2 (69)
@@ -716,6 +764,41 @@ prog6
 006400 4
 
 
+Problem 2
 
+a.
+scapy:
 
+[root@4180-network-security 4180student]# scapy
+INFO: Can't import python gnuplot wrapper . Won't be able to plot.
+INFO: Can't import PyX. Won't be able to use psdump() or pdfdump().
+WARNING: No route found for IPv6 destination :: (no default route?)
+INFO: Can't import python Crypto lib. Won't be able to decrypt WEP.
+INFO: Can't import python Crypto lib. Disabled certificate manipulation tools
+Welcome to Scapy (2.3.1)
+>>> ping = IP(dst="160.39.151.164")/ICMP()
+>>> ans = sr1(ping)
+Begin emission:
+..*Finished to send 1 packets.
+
+Received 3 packets, got 1 answers, remaining 0 packets
+
+tcpdump:
+
+14:22:14.784677 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto ICMP (1), length 28)
+    dyn-160-39-150-131.dyn.columbia.edu > dyn-160-39-151-164.dyn.columbia.edu: ICMP echo request, id 0, seq 0, length 8
+	0x0000:  28cf daeb fb30 0800 2702 9a1d 0800 4500  (....0..'.....E.
+	0x0010:  001c 0001 0000 4001 0c6a a027 9683 a027  ......@..j.'...'
+	0x0020:  97a4 0800 f7ff 0000 0000                 ..........
+
+14:22:14.784889 IP (tos 0x0, ttl 64, id 31391, offset 0, flags [none], proto ICMP (1), length 28)
+    dyn-160-39-151-164.dyn.columbia.edu > dyn-160-39-150-131.dyn.columbia.edu: ICMP echo reply, id 0, seq 0, length 8
+	0x0000:  0800 2702 9a1d 28cf daeb fb30 0800 4500  ..'...(....0..E.
+	0x0010:  001c 7a9f 0000 4001 91cb a027 97a4 a027  ..z...@....'...'
+	0x0020:  9683 0000 ffff 0000 0000 0000 0000 0000  ................
+	0x0030:  0000 0000 0000 0000 0000 0000            ............
+
+b.
+
+c.
 
