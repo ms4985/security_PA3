@@ -1,0 +1,26 @@
+
+
+19:51:55.258627 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 91)
+    192.168.1.102.65206 > 192.168.1.116.http: Flags [S], cksum 0x6bc4 (correct), seq 0:51, win 8192, length 51
+	0x0000:  0800 2702 9a1d 28cf daeb fb30 0800 4500  ..'...(....0..E.
+	0x0010:  005b 0001 0000 4006 f671 c0a8 0166 c0a8  .[....@..q...f..
+	0x0020:  0174 feb6 0050 0000 0000 0000 0000 5002  .t...P........P.
+	0x0030:  2000 6bc4 0000 4745 5420 2f73 666c 6f67  ..k...GET./sflog
+	0x0040:  6f2e 7068 703f 6772 6f75 705f 6964 3d31  o.php?group_id=1
+	0x0050:  3536 3339 3026 7479 7065 3d32 2048 5454  56390&type=2.HTT
+	0x0060:  502f 312e 315c 725c 6e                   P/1.1\r\n
+
+19:51:55.258672 IP (tos 0xc0, ttl 64, id 37120, offset 0, flags [none], proto ICMP (1), length 119)
+    192.168.1.116 > 192.168.1.102: ICMP host 192.168.1.116 unreachable - admin prohibited, length 99
+	IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 91)
+    192.168.1.102.65206 > 192.168.1.116.http: Flags [S], cksum 0x6bc4 (correct), seq 0:51, win 8192, length 51
+	0x0000:  28cf daeb fb30 0800 2702 9a1d 0800 45c0  (....0..'.....E.
+	0x0010:  0077 9100 0000 4001 649b c0a8 0174 c0a8  .w....@.d....t..
+	0x0020:  0166 030a 816e 0000 0000 4500 005b 0001  .f...n....E..[..
+	0x0030:  0000 4006 f671 c0a8 0166 c0a8 0174 feb6  ..@..q...f...t..
+	0x0040:  0050 0000 0000 0000 0000 5002 2000 6bc4  .P........P...k.
+	0x0050:  0000 4745 5420 2f73 666c 6f67 6f2e 7068  ..GET./sflogo.ph
+	0x0060:  703f 6772 6f75 705f 6964 3d31 3536 3339  p?group_id=15639
+	0x0070:  3026 7479 7065 3d32 2048 5454 502f 312e  0&type=2.HTTP/1.
+	0x0080:  315c 725c 6e                             1\r\n
+

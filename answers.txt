@@ -799,6 +799,96 @@ tcpdump:
 	0x0030:  0000 0000 0000 0000 0000 0000            ............
 
 b.
+From wireshark data:
+
+No.     Time           Source                Destination           Protocol Length Info
+    132 1.086949000    160.39.151.164        216.34.181.60         HTTP     819    GET /sflogo.php?group_id=156390&type=2 HTTP/1.1 
+
+Frame 132: 819 bytes on wire (6552 bits), 819 bytes captured (6552 bits) on interface 3
+Ethernet II, Src: Apple_eb:fb:30 (28:cf:da:eb:fb:30), Dst: CiscoInc_9f:f0:00 (00:00:0c:9f:f0:00)
+Internet Protocol Version 4, Src: 160.39.151.164 (160.39.151.164), Dst: 216.34.181.60 (216.34.181.60)
+Transmission Control Protocol, Src Port: 65206 (65206), Dst Port: 80 (80), Seq: 1, Ack: 1, Len: 753
+Hypertext Transfer Protocol
+    GET /sflogo.php?group_id=156390&type=2 HTTP/1.1\r\n
+    Host: sourceforge.net\r\n
+    Connection: keep-alive\r\n
+    Accept: image/webp,image/*,*/*;q=0.8\r\n
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36\r\n
+    Referer: http://ssdeep.sourceforge.net/\r\n
+    Accept-Encoding: gzip, deflate, sdch\r\n
+    Accept-Language: en-US,en;q=0.8\r\n
+     [truncated]Cookie: __gads=ID=93e068a81ce637b1:T=1461107512:S=ALNI_MY0CeVOyUgju6rMPCcS38tllMzlHw; _pk_ref.39.0d7e=%5B%22%22%2C%22%22%2C1461129320%2C%22http%3A%2F%2Fssdeep.sourceforge.net%2F%22%5D; VISITOR=5716bb35b6cbcd3922bad468; _ga=GA1.
+    If-Modified-Since: Thu, 05 Mar 2015 21:23:16 GMT\r\n
+    \r\n
+    [Full request URI: http://sourceforge.net/sflogo.php?group_id=156390&type=2]
+    [HTTP request 1/1]
+    [Response in frame: 134]
+
+Python script: scapy2b.py
+
+input file: inpartb.txt
+
+scapy results:
+dyn-160-39-225-111:security_PA3 megskrypek$ python scapy2b.py 
+WARNING: No route found for IPv6 destination :: (no default route?)
+###[ IP ]###
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     = 
+  frag      = 0
+  ttl       = 64
+  proto     = tcp
+  chksum    = None
+  src       = 192.168.1.102
+  dst       = 192.168.1.116
+  \options   \
+###[ TCP ]###
+     sport     = 65206
+     dport     = http
+     seq       = 0
+     ack       = 0
+     dataofs   = None
+     reserved  = 0
+     flags     = S
+     window    = 8192
+     chksum    = None
+     urgptr    = 0
+     options   = {}
+###[ Raw ]###
+        load      = 'GET /sflogo.php?group_id=156390&type=2 HTTP/1.1\\r\\n'
+Begin emission:
+..Finished to send 1 packets.
+..*
+Received 5 packets, got 1 answers, remaining 0 packets
+
+tcpdump results:
+19:51:55.258627 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 91)
+    192.168.1.102.65206 > 192.168.1.116.http: Flags [S], cksum 0x6bc4 (correct), seq 0:51, win 8192, length 51
+	0x0000:  0800 2702 9a1d 28cf daeb fb30 0800 4500  ..'...(....0..E.
+	0x0010:  005b 0001 0000 4006 f671 c0a8 0166 c0a8  .[....@..q...f..
+	0x0020:  0174 feb6 0050 0000 0000 0000 0000 5002  .t...P........P.
+	0x0030:  2000 6bc4 0000 4745 5420 2f73 666c 6f67  ..k...GET./sflog
+	0x0040:  6f2e 7068 703f 6772 6f75 705f 6964 3d31  o.php?group_id=1
+	0x0050:  3536 3339 3026 7479 7065 3d32 2048 5454  56390&type=2.HTT
+	0x0060:  502f 312e 315c 725c 6e                   P/1.1\r\n
+
+19:51:55.258672 IP (tos 0xc0, ttl 64, id 37120, offset 0, flags [none], proto ICMP (1), length 119)
+    192.168.1.116 > 192.168.1.102: ICMP host 192.168.1.116 unreachable - admin prohibited, length 99
+	IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 91)
+    192.168.1.102.65206 > 192.168.1.116.http: Flags [S], cksum 0x6bc4 (correct), seq 0:51, win 8192, length 51
+	0x0000:  28cf daeb fb30 0800 2702 9a1d 0800 45c0  (....0..'.....E.
+	0x0010:  0077 9100 0000 4001 649b c0a8 0174 c0a8  .w....@.d....t..
+	0x0020:  0166 030a 816e 0000 0000 4500 005b 0001  .f...n....E..[..
+	0x0030:  0000 4006 f671 c0a8 0166 c0a8 0174 feb6  ..@..q...f...t..
+	0x0040:  0050 0000 0000 0000 0000 5002 2000 6bc4  .P........P...k.
+	0x0050:  0000 4745 5420 2f73 666c 6f67 6f2e 7068  ..GET./sflogo.ph
+	0x0060:  703f 6772 6f75 705f 6964 3d31 3536 3339  p?group_id=15639
+	0x0070:  3026 7479 7065 3d32 2048 5454 502f 312e  0&type=2.HTTP/1.
+	0x0080:  315c 725c 6e                             1\r\n
+
 
 c.
-
+python script: scapy2c.py
